@@ -1,15 +1,28 @@
-const Assets = require("../models/assets.js")
+const dataModel = require("../models/assets.js")
 
-// Retrieve all Tutorials from the database (with condition).
-exports.findAll = (req, res) => {
-  const title = req.query.title
-
-  Assets.getAll(title, (err, data) => {
+// get
+const getAllData = (req, res) => {
+  dataModel.getAll("", (err, data) => {
     if (err)
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials.",
+        message: err.message || "error get all data",
       })
     else res.send(data)
   })
+}
+
+// post
+const postData = (req, res) => {
+  const data = req.body
+  dataModel.insertData(data, (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: "error post data" })
+    }
+    return res.status(200).json({ message: "Data inserted successfully" })
+  })
+}
+
+module.exports = {
+  getAllData,
+  postData,
 }

@@ -15,7 +15,6 @@ app.options("*", cors())
 
 // routes
 require("./app/routes/assets.routes.js")(app)
-require("./app/routes/tutorial.routes.js")(app)
 
 // Start server
 const PORT = 8080

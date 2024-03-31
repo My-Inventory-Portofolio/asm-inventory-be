@@ -1,10 +1,10 @@
 module.exports = (app) => {
-  const tutorials = require("../controllers/assets.js")
+  const assets = require("../controllers/assets.js")
 
   var router = require("express").Router()
 
-  // Retrieve all Tutorials
-  router.get("/", tutorials.findAll)
+  router.get("/", assets.getAllData)
+  router.post("/", assets.postData)
 
   app.use("/api/assets", router)
 }

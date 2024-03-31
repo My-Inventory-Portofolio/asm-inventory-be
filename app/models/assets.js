@@ -1,24 +1,41 @@
 const sql = require("./db.js")
 
-// constructor
-const Assets = function (tutorial) {
-  // this.title = tutorial.title
-  // this.description = tutorial.description
-  // this.published = tutorial.published
-}
-
-Assets.getAll = (title, result) => {
+// get all
+const getAll = (assets, result) => {
   let query = "SELECT * FROM assets"
-
   sql.query(query, (err, res) => {
     if (err) {
-      console.log("error: ", err)
-      result(null, err)
-      return
+      if (err) {
+        console.log("error: ", err)
+        result(null, err)
+        return
+      }
     }
-
     result(null, res)
   })
 }
 
-module.exports = Assets
+// post
+const insertData = (req, res) => {
+  const columns = Object.keys(req)
+  const values = Object.values(req)
+  const query = `INSERT INTO assets (${columns.join(", ")}) VALUES (${Array(
+    values.length
+  )
+    .fill("?")
+    .join(", ")})`
+
+  sql.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Error executing SQL: " + err.stack)
+      return res(err, null)
+    }
+    console.log("Berhasil")
+    return res(null, result)
+  })
+}
+
+module.exports = {
+  getAll,
+  insertData,
+}
