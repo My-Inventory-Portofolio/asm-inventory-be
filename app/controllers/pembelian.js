@@ -1,4 +1,4 @@
-const dataModel = require("../models/assets.js")
+const dataModel = require("../models/pembelian.js")
 
 // get
 const getAllData = (req, res) => {
@@ -18,7 +18,9 @@ const postData = (req, res) => {
     if (err) {
       return res.status(500).json({ error: err.sqlMessage })
     }
-    return res.status(200).json({ message: "berhasil post assets", data: data })
+    return res
+      .status(200)
+      .json({ message: "berhail post pembelian", data: data })
   })
 }
 

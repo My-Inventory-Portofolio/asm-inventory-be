@@ -1,4 +1,4 @@
-const dataModel = require("../models/assets.js")
+const dataModel = require("../models/catatan.js")
 
 // get
 const getAllData = (req, res) => {
@@ -16,9 +16,11 @@ const postData = (req, res) => {
   const data = req.body
   dataModel.insertData(data, (err, result) => {
     if (err) {
-      return res.status(500).json({ error: err.sqlMessage })
+      return res.status(500).json({ error: "error post data" })
     }
-    return res.status(200).json({ message: "berhasil post assets", data: data })
+    return res
+      .status(200)
+      .json({ message: "berhasil post catatan", data: data })
   })
 }
 

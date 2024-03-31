@@ -15,6 +15,9 @@ app.options("*", cors())
 
 // routes
 require("./app/routes/assets.routes.js")(app)
+require("./app/routes/pembelian.routes.js")(app)
+require("./app/routes/catatan.routes.js")(app)
+require("./app/routes/kartu_stok.routes.js")(app)
 
 // Start server
 const PORT = 8080
