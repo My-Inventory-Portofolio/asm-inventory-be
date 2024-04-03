@@ -35,7 +35,20 @@ const insertData = (req, res) => {
   })
 }
 
+// delete
+const deleteData = (req, res) => {
+  const query = `DELETE FROM assets where no_aset="${req.no_aset}"`
+  sql.query(query, req, (err, result) => {
+    if (err) {
+      console.error("Error executing SQL: " + err.stack)
+      return res(err, null)
+    }
+    return res(null, result)
+  })
+}
+
 module.exports = {
   getAll,
   insertData,
+  deleteData,
 }

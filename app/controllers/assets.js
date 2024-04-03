@@ -22,7 +22,16 @@ const postData = (req, res) => {
   })
 }
 
+// delete
+const deleteData = (req, res) => {
+  const data = req.body
+  dataModel.deleteData(data, (req, result) => {
+    return res.status(200).json({ message: "berhasil delete assets" })
+  })
+}
+
 module.exports = {
   getAllData,
   postData,
+  deleteData,
 }
