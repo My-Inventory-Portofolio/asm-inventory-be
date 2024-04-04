@@ -15,7 +15,7 @@ app.options("*", cors())
 
 // routes
 require("./app/routes/assets.routes.js")(app)
-require("./app/routes/login.routes.js")(app)
+require("./app/routes/users.routes.js")(app)
 require("./app/routes/pembelian.routes.js")(app)
 require("./app/routes/catatan.routes.js")(app)
 require("./app/routes/kartu_stok.routes.js")(app)
