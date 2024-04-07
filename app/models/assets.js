@@ -29,7 +29,6 @@ const insertData = (req, res) => {
     if (err) {
       return res(err, null)
     }
-    console.log("Berhasil")
     return res(null, result)
   })
 }
@@ -38,6 +37,7 @@ const insertData = (req, res) => {
 const deleteData = (req, res) => {
   const query = `DELETE FROM assets where no_aset="${req.no_aset}"`
   sql.query(query, req, (err, result) => {
+    console.log(err, result, "ini res")
     if (err) {
       return res(err, null)
     }
