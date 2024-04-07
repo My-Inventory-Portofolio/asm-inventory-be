@@ -16,7 +16,7 @@ const postData = (req, res) => {
   const data = req.body
   dataModel.insertData(data, (err, result) => {
     if (err) {
-      return res.status(500).json({ error: err.sqlMessage })
+      return res.status(401).json({ message: "No Aset tidak boleh sama" })
     }
     return res.status(200).json({ message: "berhasil post assets", data: data })
   })
