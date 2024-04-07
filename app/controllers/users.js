@@ -16,7 +16,7 @@ const login = (req, res) => {
       if (user.password === data.password) {
         const token = jwt.sign(
           { username: user.username, role: user.role },
-          "your-secret-key",
+          process.env.SECRET_KEY,
           {
             expiresIn: "1h",
           }
