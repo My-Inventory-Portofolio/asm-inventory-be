@@ -52,9 +52,32 @@ const deleteData = (req, res) => {
     res.status(402).json({ message: "You are not authorization!, login first" })
   }
 }
+// post
+const editData = (req, res) => {
+  const data = req.body
+  const token = req.headers.authorization
 
+  const userData = jwt.verify(token, process.env.SECRET_KEY)
+  if (userData) {
+    if (userData.role === "admin") {
+      dataModel.editData(data, (err, result) => {
+        if (err) {
+          return res
+            .status(401)
+            .json({ message: "error while editing", err: err })
+        }
+        return res
+          .status(200)
+          .json({ message: "Success edit assets", data: data })
+      })
+    } else {
+      res.status(401).json({ message: "You are not allowed to edit assets!" })
+    }
+  }
+}
 module.exports = {
   getAllData,
   postData,
   deleteData,
+  editData,
 }

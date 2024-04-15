@@ -16,12 +16,12 @@ const login = (req, res) => {
       if (user.password === data.password) {
         const token = jwt.sign(
           { username: user.username, role: user.role },
-          process.env.SECRET_KEY,
+          // process.env.SECRET_KEY,
+          "test",
           {
             expiresIn: "1h",
           }
         )
-        console.log({ message: "Login successful", token: token })
         res.status(200).json({ message: "Login successful", token: token })
       }
       // else {

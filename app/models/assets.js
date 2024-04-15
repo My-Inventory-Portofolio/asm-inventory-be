@@ -36,8 +36,21 @@ const insertData = (req, res) => {
 // delete
 const deleteData = (req, res) => {
   const query = `DELETE FROM assets where no_aset="${req.no_aset}"`
-  sql.query(query, req, (err, result) => {
+  sql.query(query, (err, result) => {
     console.log(err, result, "ini res")
+    if (err) {
+      return res(err, null)
+    }
+    return res(null, result)
+  })
+}
+
+// edit
+const editData = (req, res) => {
+  const query = `UPDATE assets SET ${Object.entries(req).map(
+    (e) => `${e[0]}="${e[1]}"`
+  )} WHERE no_aset = "${req.no_aset}"`
+  sql.query(query, (err, result) => {
     if (err) {
       return res(err, null)
     }
@@ -49,4 +62,5 @@ module.exports = {
   getAll,
   insertData,
   deleteData,
+  editData,
 }
