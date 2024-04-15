@@ -17,7 +17,7 @@ const postData = (req, res) => {
   const data = req.body
   const token = req.headers.authorization
 
-  const userData = jwt.verify(token, process.env.SECRET_KEY)
+  const userData = jwt.verify(token, "tomzriderx02")
   if (userData) {
     if (userData.role === "admin") {
       dataModel.insertData(data, (err, result) => {
@@ -39,7 +39,7 @@ const postData = (req, res) => {
 const deleteData = (req, res) => {
   const data = req.body
   const token = req.headers.authorization
-  const userData = jwt.verify(token, process.env.SECRET_KEY)
+  const userData = jwt.verify(token, "tomzriderx02")
   if (userData) {
     if (userData.role === "admin") {
       dataModel.deleteData(data, (err, result) => {
@@ -57,7 +57,7 @@ const editData = (req, res) => {
   const data = req.body
   const token = req.headers.authorization
 
-  const userData = jwt.verify(token, process.env.SECRET_KEY)
+  const userData = jwt.verify(token, "tomzriderx02")
   if (userData) {
     if (userData.role === "admin") {
       dataModel.editData(data, (err, result) => {
