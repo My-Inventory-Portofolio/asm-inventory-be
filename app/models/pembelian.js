@@ -15,6 +15,17 @@ const getAll = (assets, result) => {
   })
 }
 
+// delete
+const deleteData = (req, res) => {
+  const query = `DELETE FROM pembelian where kode="${req.kode}"`
+  sql.query(query, (err, result) => {
+    if (err) {
+      return res(err, null)
+    }
+    return res(null, result)
+  })
+}
+
 // post
 const insertData = (req, res) => {
   const columns = Object.keys(req)
@@ -36,5 +47,6 @@ const insertData = (req, res) => {
 
 module.exports = {
   getAll,
+  deleteData,
   insertData,
 }

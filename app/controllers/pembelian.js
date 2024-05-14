@@ -12,6 +12,24 @@ const getAllData = (req, res) => {
   })
 }
 
+// delete
+const deleteData = (req, res) => {
+  const data = req.body
+  const token = req.headers.authorization
+  const userData = jwt.verify(token, process.env.SECRET_KEY)
+  if (userData) {
+    if (userData.role === "admin") {
+      dataModel.deleteData(data, (err, result) => {
+        return res.status(200).json({ message: "Pembelian deleted" })
+      })
+    } else {
+      res.status(401).json({ message: "You are not allowed to delete assets!" })
+    }
+  } else {
+    res.status(402).json({ message: "You are not authorization!, login first" })
+  }
+}
+
 // post
 const postData = (req, res) => {
   const data = req.body
@@ -39,5 +57,6 @@ const postData = (req, res) => {
 }
 module.exports = {
   getAllData,
+  deleteData,
   postData,
 }
