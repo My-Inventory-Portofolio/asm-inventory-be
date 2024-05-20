@@ -34,7 +34,7 @@ const deleteData = (req, res) => {
     if (err) {
       console.log(err, "ini error delete data")
     }
-    return res.status(200).json({ message: "Assets deleted" })
+    return res.status(200).json({ message: "Keluhan deleted" })
   })
 }
 
