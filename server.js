@@ -19,6 +19,7 @@ require("./app/routes/users.routes.js")(app)
 require("./app/routes/pembelian.routes.js")(app)
 require("./app/routes/catatan.routes.js")(app)
 require("./app/routes/kartu_stok.routes.js")(app)
+require("./app/routes/keluhan.routes.js")(app)
 
 // Start server
 const PORT = 8080

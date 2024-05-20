@@ -52,6 +52,7 @@ const deleteData = (req, res) => {
     res.status(402).json({ message: "You are not authorization!, login first" })
   }
 }
+
 // post
 const editData = (req, res) => {
   const data = req.body
