@@ -30,12 +30,21 @@ const postData = (req, res) => {
 // delete
 const deleteData = (req, res) => {
   const data = req.body
-  dataModel.deleteData(data, (err, result) => {
-    if (err) {
-      console.log(err, "ini error delete data")
+  const token = req.headers.authorization
+  const userData = jwt.verify(token, process.env.SECRET_KEY)
+  if (userData) {
+    if (userData.role === "admin") {
+      dataModel.deleteData(data, (err, result) => {
+        return res.status(200).json({ message: "Keluhan Completed" })
+      })
+    } else {
+      res
+        .status(401)
+        .json({ message: "You are not allowed to delete keluhan!" })
     }
-    return res.status(200).json({ message: "Keluhan deleted" })
-  })
+  } else {
+    res.status(402).json({ message: "You are not authorization!, login first" })
+  }
 }
 
 module.exports = {
