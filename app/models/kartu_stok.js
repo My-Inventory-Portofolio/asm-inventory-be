@@ -2,7 +2,7 @@ const sql = require("./db.js")
 
 // get all
 const getAll = (assets, result) => {
-  let query = "SELECT * FROM pembelian where pic=''"
+  let query = "SELECT * FROM assets where pic=''"
   sql.query(query, (err, res) => {
     if (err) {
       if (err) {
